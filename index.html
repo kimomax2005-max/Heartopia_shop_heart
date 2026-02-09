@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZSNIX STUDIO SHOP - Premium Top-up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body { background: #0f172a; font-family: 'Poppins', sans-serif; color: #f8fafc; }
+        .glass-card { background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; }
+        .table-row:hover { background: rgba(255, 255, 255, 0.05); }
+        .buy-btn { font-size: 0.75rem; padding: 4px 12px; border-radius: 20px; transition: 0.3s; }
+    </style>
+</head>
+<body class="py-10 px-4">
+
+<div class="max-w-md mx-auto space-y-6">
+    <div class="glass-card p-6 text-center border-b-4 border-sky-500">
+        <h1 class="text-3xl font-bold text-sky-400 tracking-wider">ZSNIX STUDIO</h1>
+        <p class="text-gray-400 text-xs mt-1 uppercase">Game Top-up & Items</p>
+    </div>
+
+    <div class="flex space-x-2 bg-slate-800 p-1 rounded-xl">
+        <button onclick="switchTab('mlbb')" class="w-1/2 py-2 rounded-lg font-semibold transition-all" id="tab-mlbb">MLBB</button>
+        <button onclick="switchTab('heartopia')" class="w-1/2 py-2 rounded-lg font-semibold transition-all text-gray-400" id="tab-heart">HEARTOPIA</button>
+    </div>
+
+    <div id="mlbb-section" class="space-y-6">
+        <div class="glass-card overflow-hidden">
+            <div class="bg-sky-600 px-4 py-2 text-sm font-bold">MLBB PRICE LIST</div>
+            <table class="w-full text-left text-sm">
+                <tr class="text-gray-400 border-b border-slate-700">
+                    <th class="p-3">Diamonds</th>
+                    <th class="p-3">Price</th>
+                    <th class="p-3 text-right">Action</th>
+                </tr>
+                <tr class="table-row border-b border-slate-700/50">
+                    <td class="p-3">Weekly Pass</td>
+                    <td class="p-3 text-sky-400">5500 Ks</td>
+                    <td class="p-3 text-right"><button onclick="quickBuy('m-item', 'Weekly Diamond Pass')" class="buy-btn bg-sky-600">Buy</button></td>
+                </tr>
+                <tr class="table-row border-b border-slate-700/50">
+                    <td class="p-3">86 Diamonds</td>
+                    <td class="p-3 text-sky-400">4200 Ks</td>
+                    <td class="p-3 text-right"><button onclick="quickBuy('m-item', '86 Diamonds')" class="buy-btn bg-sky-600">Buy</button></td>
+                </tr>
+                <tr class="table-row border-b border-slate-700/50">
+                    <td class="p-3">257 Diamonds</td>
+                    <td class="p-3 text-sky-400">12500 Ks</td>
+                    <td class="p-3 text-right"><button onclick="quickBuy('m-item', '257 Diamonds')" class="buy-btn bg-sky-600">Buy</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="glass-card p-6 space-y-4">
+            <h3 class="text-sky-400 font-bold">MLBB Order Form</h3>
+            <div class="grid grid-cols-2 gap-2">
+                <input type="number" id="m-id" placeholder="Player ID" class="bg-slate-900 p-3 rounded-lg text-sm outline-none">
+                <input type="number" id="m-zone" placeholder="Zone ID" class="bg-slate-900 p-3 rounded-lg text-sm outline-none">
+            </div>
+            <select id="m-item" class="w-full bg-slate-900 p-3 rounded-lg text-sm outline-none border-l-4 border-sky-500">
+                <option value="Weekly Diamond Pass">Weekly Diamond Pass</option>
+                <option value="86 Diamonds">86 Diamonds</option>
+                <option value="257 Diamonds">257 Diamonds</option>
+            </select>
+            <button onclick="processOrder('MLBB')" class="w-full bg-sky-600 hover:bg-sky-500 py-3 rounded-xl font-bold shadow-lg shadow-sky-500/20 transition-all">CONFIRM ORDER</button>
+        </div>
+    </div>
+
+    <div id="heartopia-section" class="hidden space-y-6">
+        <div class="glass-card overflow-hidden">
+            <div class="bg-pink-600 px-4 py-2 text-sm font-bold">HEARTOPIA PRICE LIST</div>
+            <table class="w-full text-left text-sm">
+                <tr class="text-gray-400 border-b border-slate-700">
+                    <th class="p-3">Hearts</th>
+                    <th class="p-3">Price</th>
+                    <th class="p-3 text-right">Action</th>
+                </tr>
+                <tr class="table-row border-b border-slate-700/50">
+                    <td class="p-3">100 Hearts</td>
+                    <td class="p-3 text-pink-400">2000 Ks</td>
+                    <td class="p-3 text-right"><button onclick="quickBuy('h-item', '100 Hearts')" class="buy-btn bg-pink-600">Buy</button></td>
+                </tr>
+                <tr class="table-row border-b border-slate-700/50">
+                    <td class="p-3">500 Hearts</td>
+                    <td class="p-3 text-pink-400">9500 Ks</td>
+                    <td class="p-3 text-right"><button onclick="quickBuy('h-item', '500 Hearts')" class="buy-btn bg-pink-600">Buy</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="glass-card p-6 space-y-4">
+            <h3 class="text-pink-400 font-bold">Heartopia Order Form</h3>
+            <input type="text" id="h-id" placeholder="Character ID / Username" class="w-full bg-slate-900 p-3 rounded-lg text-sm outline-none">
+            <select id="h-item" class="w-full bg-slate-900 p-3 rounded-lg text-sm outline-none border-l-4 border-pink-500">
+                <option value="100 Hearts">100 Hearts</option>
+                <option value="500 Hearts">500 Hearts</option>
+            </select>
+            <button onclick="processOrder('Heartopia')" class="w-full bg-pink-600 hover:bg-pink-500 py-3 rounded-xl font-bold shadow-lg shadow-pink-500/20 transition-all">CONFIRM ORDER</button>
+        </div>
+    </div>
+
+    <div class="glass-card p-4 border-dashed border-2 border-slate-600">
+        <div class="flex justify-between items-center">
+            <span class="text-xs text-gray-400 uppercase font-bold">Pay via KBZPay</span>
+            <img src="https://img.icons8.com/color/48/bank-card-back-side.png" class="w-6 h-6">
+        </div>
+        <div class="text-xl font-bold text-center mt-2 text-white">09779833658</div>
+        <p class="text-[10px] text-center text-gray-500 mt-1 uppercase tracking-widest">Send Screenshot after payment</p>
+    </div>
+</div>
+
+<script>
+    const BOT_TOKEN = 'YOUR_BOT_TOKEN';
+    const CHAT_ID = 'YOUR_CHAT_ID';
+
+    function switchTab(type) {
+        document.getElementById('mlbb-section').classList.toggle('hidden', type !== 'mlbb');
+        document.getElementById('heartopia-section').classList.toggle('hidden', type !== 'heartopia');
+        
+        document.getElementById('tab-mlbb').className = type === 'mlbb' ? 'w-1/2 py-2 rounded-lg font-semibold bg-sky-600 text-white' : 'w-1/2 py-2 rounded-lg font-semibold text-gray-400';
+        document.getElementById('tab-heart').className = type === 'heartopia' ? 'w-1/2 py-2 rounded-lg font-semibold bg-pink-600 text-white' : 'w-1/2 py-2 rounded-lg font-semibold text-gray-400';
+    }
+
+    function quickBuy(targetId, value) {
+        document.getElementById(targetId).value = value;
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    function processOrder(game) {
+        let msg = ` *NEW ORDER - ZSNIX SHOP*\n\n`;
+        if(game === 'MLBB') {
+            const id = document.getElementById('m-id').value;
+            const zone = document.getElementById('m-zone').value;
+            if(!id || !zone) return alert("ID ဖြည့်ပါ");
+            msg += ` Game: MLBB\n ID: ${id} (${zone})\n Item: ${document.getElementById('m-item').value}`;
+        } else {
+            const id = document.getElementById('h-id').value;
+            if(!id) return alert("ID ဖြည့်ပါ");
+            msg += ` Game: Heartopia\n ID: ${id}\n Item: ${document.getElementById('h-item').value}`;
+        }
+        
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}&parse_mode=Markdown`;
+        
+        fetch(url).then(() => alert("Order ပို့ပြီးပါပြီ။ 09779833658 သို့ ငွေလွှဲပြီး SS ပို့ပေးပါ။"));
+    }
+</script>
+</body>
+</html>
